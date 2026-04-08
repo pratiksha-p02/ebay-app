@@ -115,7 +115,7 @@ const maxPrice = ref('');
 const condition = ref('');
 let debounceTimeout = null;
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://ebay-app-search.onrender.com';
 
 watch([minPrice, maxPrice, condition], () => {
   page.value = 1;
