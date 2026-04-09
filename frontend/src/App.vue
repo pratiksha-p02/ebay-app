@@ -10,6 +10,8 @@
         </p>
       </div>
 
+<!-- Search form with inputs and submit button -->
+
       <form class="search-bar" @submit.prevent="onSubmit">
         <input
           v-model="query"
@@ -121,6 +123,7 @@ watch([minPrice, maxPrice, condition], () => {
   page.value = 1;
 });
 
+// Format price ito readable currency string
 function formatPrice(price, currency) {
   if (price === '' || price === null || price === undefined) return 'Price unavailable';
 
@@ -134,6 +137,8 @@ function formatPrice(price, currency) {
     currency: currency || 'USD'
   }).format(value);
 }
+
+// Handle debounced search input
 function onInput() {
   clearTimeout(debounceTimeout);
   debounceTimeout = setTimeout(() => {
@@ -141,7 +146,7 @@ function onInput() {
     searchProducts();
   }, 500); // 500ms delay
 }
-
+// Build API URL with query params
 function buildSearchUrl() {
   const params = new URLSearchParams();
   params.set('q', query.value.trim());
@@ -154,6 +159,7 @@ function buildSearchUrl() {
   return `${backendUrl}/search?${params.toString()}`;
 }
 
+// Fetch products from backend API
 async function searchProducts() {
   const trimmed = query.value.trim();
 
@@ -193,13 +199,14 @@ async function searchProducts() {
     loading.value = false;
   }
 }
-
+// handle Submit
 function onSubmit() {
 clearTimeout(debounceTimeout)
   page.value = 1;
   searchProducts();
 }
 
+// prev and next page buttons
 function nextPage() {
   page.value += 1;
   searchProducts();
@@ -214,6 +221,7 @@ function prevPage() {
 </script>
 
 <style scoped>
+/* Price and condition styling */
 :global(*) {
   box-sizing: border-box;
 }

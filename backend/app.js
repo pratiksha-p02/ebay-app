@@ -1,3 +1,4 @@
+// Load environment variables and required packages.
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -7,15 +8,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Setting eBay API endpoints and marketplace settings based on sandbox or production mode.
 const isSandbox = String(process.env.EBAY_ENV || 'sandbox').toLowerCase() !== 'production';
 const EBAY_API_BASE = isSandbox ? 'https://api.sandbox.ebay.com' : 'https://api.ebay.com';
 const EBAY_OAUTH_URL = `${EBAY_API_BASE}/identity/v1/oauth2/token`;
 const EBAY_SEARCH_URL = `${EBAY_API_BASE}/buy/browse/v1/item_summary/search`;
 const EBAY_MARKETPLACE_ID = process.env.EBAY_MARKETPLACE_ID || 'EBAY_US';
 
+// Storing the cached access token and its expiration time.
 let cachedToken = null;
 let tokenExpiresAt = 0;
 
+
+// Fetching a valid eBay access token and reuse it until it expires.
 async function getEbayAccessToken() {
   if (cachedToken && Date.now() < tokenExpiresAt) {
     return cachedToken;
@@ -49,6 +54,7 @@ async function getEbayAccessToken() {
   return cachedToken;
 }
 
+// Convertin eBay API items into a simpler response format for the frontend.
 function normalizeEbayItems(items = []) {
   return items.map((item) => ({
     id: item.itemId || Math.random().toString(36).slice(2),
@@ -60,7 +66,7 @@ function normalizeEbayItems(items = []) {
     url: item.itemWebUrl || ''
   }));
 }
-
+// Handle search requests, validate filters, call eBay, and return formatted results.
 app.get('/search', async (req, res) => {
   const q = String(req.query.q || '').trim();
   const page = Math.max(1, Number.parseInt(String(req.query.page || '1'), 10) || 1);
