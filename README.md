@@ -2,6 +2,8 @@
 
 A full stack application that allows users to search the eBay marketplace, view product listings, and filter by price or condition. This project demonstrates a production minded integration with the eBay Browse API, with a secure backend and a Vue 3 frontend.
 
+Live demo: https://ebay-app-search-b6rof8q0c-pratiksha-p02s-projects.vercel.app/
+Backend API Test: https://ebay-app-search.onrender.com/search?q=iphone
 ---
 
 ## Features
