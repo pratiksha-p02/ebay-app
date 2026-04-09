@@ -1,6 +1,3 @@
- **README**,
-
-```md
 # eBay Product Search Integration
 
 A full stack application that allows users to search the eBay marketplace, view product listings, and filter by price or condition. This project demonstrates a production minded integration with the eBay Browse API, with a secure backend and a Vue 3 frontend.
@@ -45,24 +42,22 @@ API: eBay Browse API
 
 ## Project Structure
 
-```
 
 .
 ├── backend/
-│   ├── app.js
-│   ├── server.js
-│   ├── package.json
-│   ├── .env.example
-│   └── tests/
-│       └── search.test.js
+│ ├── app.js
+│ ├── server.js
+│ ├── package.json
+│ ├── .env.example
+│ └── tests/
+│ └── search.test.js
 ├── frontend/
-│   ├── package.json
-│   ├── .env.example
-│   └── src/
-│       └── App.vue
+│ ├── package.json
+│ ├── .env.example
+│ └── src/
+│ └── App.vue
 └── README.md
 
-```
 
 ---
 
@@ -75,43 +70,35 @@ API: eBay Browse API
 
 ### Backend setup
 
-```
 
 cd backend
 npm install
 cp .env.example .env
 
-```
 
 Update `.env`:
 
-```
 
 EBAY_APP_ID=your_client_id
 EBAY_CERT_ID=your_client_secret
 EBAY_ENV=sandbox
 PORT=3000
 
-```
 
 ### Frontend setup
 
-```
 
 cd frontend
 npm install
 npm run dev
 
-```
 
 ### Run backend
 
-```
 
 cd backend
 node server.js
 
-```
 
 ---
 
@@ -155,5 +142,5 @@ Backend deployed on Render
 
 ## License
 
-Built for a full stack engineering assignment.
-```
+Built for a full stack engineering assignment. :)
+
